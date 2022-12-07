@@ -1,0 +1,104 @@
+{
+    "images": [
+    ],
+    "type": "instances",
+    "categories": [
+        {
+            "id": 1,
+            "name": "StripedSkunk",
+            "supercategory": "none"
+        },
+        {
+            "id": 2,
+            "name": "Deer",
+            "supercategory": "none"
+        },
+        {
+            "id": 3,
+            "name": "Bobcat",
+            "supercategory": "none"
+        },
+        {
+            "id": 4,
+            "name": "Armadillo",
+            "supercategory": "none"
+        },
+        {
+            "id": 5,
+            "name": "FlyingSquirrel",
+            "supercategory": "none"
+        },
+        {
+            "id": 6,
+            "name": "Raccoon",
+            "supercategory": "none"
+        },
+        {
+            "id": 7,
+            "name": "Squirrel",
+            "supercategory": "none"
+        },
+        {
+            "id": 8,
+            "name": "Coyote",
+            "supercategory": "none"
+        },
+        {
+            "id": 9,
+            "name": "SpottedSkunk",
+            "supercategory": "none"
+        },
+        {
+            "id": 10,
+            "name": "Chipmunk",
+            "supercategory": "none"
+        },
+        {
+            "id": 11,
+            "name": "Moutainlion",
+            "supercategory": "none"
+        },
+        {
+            "id": 12,
+            "name": "Dog",
+            "supercategory": "none"
+        },
+        {
+            "id": 13,
+            "name": "FeralHog",
+            "supercategory": "none"
+        },
+        {
+            "id": 14,
+            "name": "Opossum",
+            "supercategory": "none"
+        },
+        {
+            "id": 15,
+            "name": "Mouse",
+            "supercategory": "none"
+        },
+        {
+            "id": 16,
+            "name": "Bird",
+            "supercategory": "none"
+        },
+        {
+            "id": 17,
+            "name": "Rabbit",
+            "supercategory": "none"
+        },
+        {
+            "id": 18,
+            "name": "Blackbear",
+            "supercategory": "none"
+        },
+        {
+            "id": 19,
+            "name": "Fox",
+            "supercategory": "none"
+        }
+    ],
+    "annotations": [
+    ]
+}

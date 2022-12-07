@@ -1,0 +1,79 @@
+{
+    "images": [
+    ],
+    "type": "instances",
+    "categories": [
+        {
+            "id": 1,
+            "name": "ARMADILLO",
+            "supercategory": "none"
+        },
+        {
+            "id": 2,
+            "name": "BIRD",
+            "supercategory": "none"
+        },
+        {
+            "id": 3,
+            "name": "BOAR",
+            "supercategory": "none"
+        },
+        {
+            "id": 4,
+            "name": "BOBCAT",
+            "supercategory": "none"
+        },
+        {
+            "id": 5,
+            "name": "CHIPMUNK",
+            "supercategory": "none"
+        },
+        {
+            "id": 6,
+            "name": "COYOTE",
+            "supercategory": "none"
+        },
+        {
+            "id": 7,
+            "name": "DOG",
+            "supercategory": "none"
+        },
+        {
+            "id": 8,
+            "name": "FLYING_SQUIRREL",
+            "supercategory": "none"
+        },
+        {
+            "id": 9,
+            "name": "SQUIRREL",
+            "supercategory": "none"
+        },
+        {
+            "id": 10,
+            "name": "FOX",
+            "supercategory": "none"
+        },
+        {
+            "id": 11,
+            "name": "MOUSE",
+            "supercategory": "none"
+        },
+        {
+            "id": 12,
+            "name": "OPOSSUM",
+            "supercategory": "none"
+        },
+        {
+            "id": 13,
+            "name": "RACCOON",
+            "supercategory": "none"
+        },
+        {
+            "id": 14,
+            "name": "DEER",
+            "supercategory": "none"
+        }
+    ],
+    "annotations": [
+    ]
+}
