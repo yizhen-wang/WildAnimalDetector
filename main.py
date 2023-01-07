@@ -107,6 +107,7 @@ def gen_result(args):
 			splits = list(map(float, bboxes_info_dict[img_name][key].split()))
 			detect_dict = {}
 			detect_dict['id'] = detect_idx
+			detect_idx += 1
 			detect_dict['bbox'] = [[splits[0], splits[1], splits[2], splits[3]]]
 
 
