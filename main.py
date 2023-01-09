@@ -2,6 +2,7 @@ import os
 import cv2
 import json
 import argparse
+import csv
 import numpy as np
 from ensemble_boxes import *
 from skimage import io
@@ -20,7 +21,8 @@ CATE_LIST = ['StripedSkunk', 'Deer', 'Bobcat', 'Armadillo', 'FlyingSquirrel', 'R
 bboxes_info_dict = {}
 
 def do_detection(img_path, args):
-	print(img_path)
+	print('*'*30)
+	print('Image Path: ' + img_path)
 	img_name = img_path.split('/')[-1].split('.')[0]
 
 	print('--------------------------')
@@ -100,7 +102,9 @@ def do_detection(img_path, args):
 
 def gen_result(args):
 	output_dict = {}
-	for img_name in bboxes_info_dict:
+	csvout_dict = []
+
+	for img_name in bboxes_info_dict.keys():
 		output_dict[img_name] = []
 		detect_idx = 1
 		for key in bboxes_info_dict[img_name].keys():
@@ -108,29 +112,49 @@ def gen_result(args):
 			detect_dict = {}
 			detect_dict['id'] = detect_idx
 			detect_idx += 1
-			detect_dict['bbox'] = [[splits[0], splits[1], splits[2], splits[3]]]
+			detect_dict['bbox'] = [[round(splits[0],4), round(splits[1],4), round(splits[2],4), round(splits[3],4)]]
 
+			detect_dict_csv = {}
+			detect_dict_csv['ImageName'] = img_name
+			detect_dict_csv['bbox'] = [[round(splits[0],4), round(splits[1],4), round(splits[2],4), round(splits[3],4)]]
 
 			if args.WBF_Usage == 'True':
 				detect_dict['class'] = CATE_LIST[int(splits[4])]
-				detect_dict['conf'] = splits[5]
+				detect_dict['conf']  = round(splits[5],4)
+				detect_dict_csv['class'] = CATE_LIST[int(splits[4])]
+				detect_dict_csv['conf']  = round(splits[5],4)
 			elif args.Classification_Usage == 'True':
 				det_conf = splits[5]
 				cla_conf = splits[7]
 				if det_conf < cla_conf:
 					detect_dict['class'] = CATE_LIST[int(splits[6])]
-					detect_dict['conf'] = splits[7]
+					detect_dict['conf']  = round(splits[7],4)
+					detect_dict_csv['class'] = CATE_LIST[int(splits[6])]
+					detect_dict_csv['conf']  = round(splits[7],4)
 				else:
 					detect_dict['class'] = CATE_LIST[int(splits[4])]
-					detect_dict['conf'] = splits[5]
+					detect_dict['conf']  = round(splits[5],4)
+					detect_dict_csv['class'] = CATE_LIST[int(splits[4])]
+					detect_dict_csv['conf']  = round(splits[5],4)
 			else:
 				detect_dict['class'] = CATE_LIST[int(splits[4])]
-				detect_dict['conf'] = splits[5]
-		output_dict[img_name].append(detect_dict)
+				detect_dict['conf']  = round(splits[5],4)
+				detect_dict_csv['class'] = CATE_LIST[int(splits[4])]
+				detect_dict_csv['conf']  = round(splits[5],4)
+			output_dict[img_name].append(detect_dict)
+			csvout_dict.append(detect_dict_csv)
 
 	result_file = os.path.join(args.Output_Dir, 'detection.json')
 	with open(result_file, 'w') as f:
 		json.dump(output_dict, f, indent=4)
+
+	csv_columns = ['ImageName', 'bbox', 'class', 'conf']
+	csv_file = os.path.join(args.Output_Dir, 'detection.csv')
+	with open(csv_file, 'w') as csvfile:
+		writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+		writer.writeheader()
+		for data in csvout_dict:
+			writer.writerow(data)
 
 
 
@@ -147,7 +171,6 @@ if __name__ == '__main__':
 							help='If generate images with detected animal.')
 
 	args = parser.parse_args()
-	#print(args)
 	os.makedirs(args.Output_Dir, exist_ok=True)
 
 	if args.Draw_Detection == 'True':
@@ -161,6 +184,7 @@ if __name__ == '__main__':
 		img_dir = args.DirPath
 		image_list = [f for f in os.listdir(img_dir) if 
 						os.path.isfile(os.path.join(img_dir, f)) and f.endswith('.jpg') or f.endswith('.JPG')]
+		image_list.sort()
 		if len(image_list) == 0:
 			print('Your image folder is empty, please make sure your image file is end with .jpg or .JPG')
 			exit()
